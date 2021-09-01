@@ -8,7 +8,7 @@ module.exports = options => {
     entry: './src/index.js',
     output: {
       filename: 'bundle.js',   
-      publicPath: '/',
+      publicPath: 'auto',
       uniqueName: "mfe4"
     },
     module: {
@@ -43,7 +43,7 @@ module.exports = options => {
           MiniCssExtractPlugin.loader,
           "css-loader", "postcss-loader",
           ],
-      },
+      }, 
       ],
     },
     plugins: [
@@ -61,7 +61,7 @@ module.exports = options => {
               './Module': './src/main.js',
           },        
 
-          shared: ["react", "react-dom"]
+          shared: ["react", "react-dom", "axios"]
         })
     ],
     devServer: {

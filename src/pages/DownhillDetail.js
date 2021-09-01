@@ -1,16 +1,16 @@
-import img1 from "../assets/img/agnieszka-kowalczyk-ucYMpdbO6X8-unsplash.jpg";
-import { Link } from "react-router-dom";
-import React from 'react';
+import { Link, withRouter } from "react-router-dom";
+import React from "react";
+import axios from "axios";
 
 class DownhillDetail extends React.Component {
+  state = {
+    item: null,
+    sizeSelected: 0,
+  };
+
   constructor() {
     super();
-    this.item = {
-      id: 1,
-      img: img1,
-      label: "Farted Xtrem",
-      price: 360,
-    };
+
     this.sizes = [
       { id: 1, label: "XS" },
       { id: 2, label: "S" },
@@ -18,7 +18,13 @@ class DownhillDetail extends React.Component {
       { id: 4, label: "L" },
       { id: 5, label: "XL" },
     ];
-    this.state = { sizeSelected: 0 };
+  }
+
+  componentDidMount() {
+    axios.get(`http://localhost:3000/downhill/${this.props.match.params.id}`).then((res) => {
+      const item = res.data;
+      this.setState({ item });
+    });
   }
 
   render() {
@@ -56,18 +62,24 @@ class DownhillDetail extends React.Component {
                 clipRule="evenodd"
               />
             </svg>
-            <Link className="px-2" to={`/cross-country/${this.item.id}`}>
-              {this.item.label}
+            <Link className="px-2" to={`/cross-country/${this.state.item?.id}`}>
+              {this.state.item?.label}
             </Link>
           </div>
           <div className="flex flex-row pt-8">
             <div className="flex-1 clear-fix">
               <div className="cards">
-                <img className="w-full h-auto" alt="" src={this.item.img} />
+                <img
+                  className="w-full h-auto"
+                  alt=""
+                  src={this.state.item?.img}
+                />
               </div>
             </div>
             <div className="flex-1 flex flex-col px-8">
-              <h1 className="py-1 mb-8 text-4xl font-black">{this.item.label}</h1>
+              <h1 className="py-1 mb-8 text-4xl font-black">
+                {this.state.item?.label}
+              </h1>
               <div className="flex mb-4 flex-row text-xl">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -112,7 +124,7 @@ class DownhillDetail extends React.Component {
                 <span className="px-1 text-gray-500">4</span>
                 <span className="px-1 text-gray-500">(14)</span>
               </div>
-              <div className="text-3xl my-4">{this.item.price} $</div>
+              <div className="text-3xl my-4">{this.state.item?.price} $</div>
               <div className="flex flex-row my-4">
                 {this.sizes.map((size) => (
                   <div
@@ -139,4 +151,4 @@ class DownhillDetail extends React.Component {
   }
 }
 
-export default DownhillDetail;
+export default withRouter(DownhillDetail);
