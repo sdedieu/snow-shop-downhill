@@ -1,7 +1,6 @@
-const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
-const CopyWebpackPlugin = require("copy-webpack-plugin");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const htmlWebpackPlugin = require("html-webpack-plugin");
+const path = require("path");
 
 module.exports = options => {
   return {
@@ -51,18 +50,10 @@ module.exports = options => {
         filename: "index.css",
         chunkFilename: "index.css"
       }),
-      new ModuleFederationPlugin({
-        
-          // For remotes (please adjust)
-          name: "downhill",
-          library: { type: "var", name: "downhill" },
-          filename: "remoteEntry.js",
-          exposes: {
-              './Module': './src/main.js',
-          },        
-
-          shared: ["react", "react-dom", "axios"]
-        })
+      new htmlWebpackPlugin({
+        template: path.resolve(__dirname, "public", "index.html"),
+        favicon: "./public/favicon.ico",
+      }),
     ],
     devServer: {
       port: 4203,

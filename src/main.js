@@ -4,18 +4,10 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-
-class Mfe4Element extends HTMLElement {
-    connectedCallback() {
-        
         ReactDOM.render(
             <React.StrictMode>
               <App />
-            </React.StrictMode>, this);
-    }
-  }
-  
-  customElements.define('downhill-page-element', Mfe4Element);
+            </React.StrictMode>, document.getElementById('App'));
 
 
 // If you want to start measuring performance in your app, pass a function
