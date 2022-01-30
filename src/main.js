@@ -22,7 +22,7 @@ export class Mfe extends HTMLElement {
     );
   }
 }
-customElements.define("mfe-web-component", Mfe);
+customElements.define("downhill-page-element", Mfe);
 */
 
 // If you want to start measuring performance in your app, pass a function
