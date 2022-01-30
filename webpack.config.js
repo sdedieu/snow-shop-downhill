@@ -1,3 +1,4 @@
+const ModuleFederationPlugin = require("webpack/lib/container/ModuleFederationPlugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const htmlWebpackPlugin = require("html-webpack-plugin");
 const path = require("path");
@@ -51,7 +52,6 @@ module.exports = (options) => {
         template: path.resolve(__dirname, "public", "index.html"),
         favicon: "./public/favicon.ico",
       }),
-      /*
       new ModuleFederationPlugin({
         // For remotes (please adjust)
         name: "mfe",
@@ -62,7 +62,6 @@ module.exports = (options) => {
         },
         shared: ["react", "react-dom", "axios"],
       }),
-      */
     ],
     devServer: {
       port: 4203,
