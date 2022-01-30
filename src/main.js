@@ -4,6 +4,7 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
+
 ReactDOM.render(
   <React.StrictMode>
     <App />
@@ -12,17 +13,17 @@ ReactDOM.render(
 );
 
 /*
-export class Mfe extends HTMLElement {
-  connectedCallBack() {
-    ReactDOM.render(
-      <React.StrictMode>
-        <App />
-      </React.StrictMode>,
-      this
-    );
+class MfeReact extends HTMLElement {
+  connectedCallback() {
+      
+      ReactDOM.render(
+          <React.StrictMode>
+            <App />
+          </React.StrictMode>, this);
   }
 }
-customElements.define("downhill-web-component", Mfe);
+
+customElements.define('downhill-web-component', MfeReact);
 */
 
 // If you want to start measuring performance in your app, pass a function
