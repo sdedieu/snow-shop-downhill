@@ -54,11 +54,11 @@ module.exports = (options) => {
       }),
       new ModuleFederationPlugin({
         // For remotes (please adjust)
-        name: "mfe",
-        library: { type: "var", name: "mfe" },
+        name: "downhill",
+        library: { type: "var", name: "downhill" },
         filename: "remoteEntry.js",
         exposes: {
-          "./module": ".//src/main.js",
+          "./module": ".//src/index.js",
         },
         shared: ["react", "react-dom", "axios"],
       }),
